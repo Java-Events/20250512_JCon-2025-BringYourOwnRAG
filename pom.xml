@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.svenruppert</groupId>
+        <artifactId>dependencies</artifactId>
+        <version>06.00.05</version>
+    </parent>
+
+    <artifactId>core</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+
+    <inceptionYear>2023</inceptionYear>
+    <organization>
+        <name>Sven Ruppert</name>
+        <url>http://www.svenruppert.com</url>
+    </organization>
+
+    <url>https://github.com/Java-Events/20250512_JCon-2025-BringYourOwnRAG</url>
+    <name>Bring Your Own RAG</name>
+    <description>First steps with RAG and VectorDB´s</description>
+    <scm>
+        <url>https://github.com/Java-Events/20250512_JCon-2025-BringYourOwnRAG</url>
+        <connection>scm:git:https://github.com/Java-Events/20250512_JCon-2025-BringYourOwnRAG.git</connection>
+        <developerConnection>scm:git:https://github.com/Java-Events/20250512_JCon-2025-BringYourOwnRAG.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <developers>
+        <developer>
+            <name>Sven Ruppert</name>
+            <email>sven.ruppert@gmail.com</email>
+            <roles>
+                <role>Founder</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Java-Events/20250512_JCon-2025-BringYourOwnRAG/issues</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <properties>
+
+        <app.main.class>com.svenruppert.Application</app.main.class>
+
+        <deploy-repo-url>https://repo.maven.apache.org/maven2/</deploy-repo-url>
+        <deploy-repo-snapshots-url>https://repo.maven.apache.org/maven2/</deploy-repo-snapshots-url>
+
+        <jdk.version>24</jdk.version>
+
+        <maven.compiler.release>${jdk.version}</maven.compiler.release>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source> <!--redundant, but IntelliJ doesn't-->
+        <maven.compiler.target>${jdk.version}</maven.compiler.target> <!--use release when importing-->
+
+        <maven.compiler.testRelease>${jdk.version}</maven.compiler.testRelease>
+        <maven.compiler.testSource>${jdk.version}</maven.compiler.testSource>
+        <maven.compiler.testTarget>${jdk.version}</maven.compiler.testTarget>
+
+        <minimum-maven.version>3.9.9</minimum-maven.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spotbugs.skip>true</spotbugs.skip>
+
+        <pitest-prod-classes>com.svenruppert.*</pitest-prod-classes>
+        <pitest-test-classes>junit.com.svenruppert.*</pitest-test-classes>
+
+        <!--TDD jUnit5-->
+        <!--        <junit-platform-maven-plugin.version>1.1.7</junit-platform-maven-plugin.version>-->
+        <junit-platform-maven-plugin.timeout>300</junit-platform-maven-plugin.timeout>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>deploy-repo-maven</id>
+            <name>deploy-repo-maven</name>
+            <url>${deploy-repo-url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>deploy-repo-maven-snapshots</id>
+            <name>deploy-repo-maven-snapshots</name>
+            <url>${deploy-repo-snapshots-url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencyManagement>
+        <!--project versions-->
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!--        Persistence-->
+        <dependency>
+            <groupId>org.eclipse.store</groupId>
+            <artifactId>storage-embedded</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+
+        <!-- RAG Dependencies -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+            <version>1.0.0-rc1</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-ollama</artifactId>
+            <version>1.0.0-beta4</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-qdrant</artifactId>
+            <version>1.0.0-beta4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <!--        DemoApplication?-->
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin</artifactId>
+            <version>6.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin-testtools</artifactId>
+            <version>6.6.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--    REST-Testing-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.svenruppert</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+
+
+    <profiles>
+
+        <profile>
+            <id>_shadejar</id>
+            <build>
+                <finalName>application</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${app.main.class}
+                                    </mainClass> <!-- Here you should put the main class of your application -->
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter> <!-- This filter is needed to avoid a bug in the shade plugin -->
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+
+    </profiles>
+</project>
